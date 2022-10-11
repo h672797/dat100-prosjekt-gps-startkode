@@ -105,9 +105,11 @@ public class GPSUtils {
 		double speed;
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
+		double distance = distance(gpspoint1, gpspoint2) /1000;
+		secs = gpspoint2.getTime() - gpspoint1.getTime();
+		speed = (distance / secs) * 3600;
+		
+		return speed;
 		// TODO - SLUTT
 
 	}
@@ -135,6 +137,6 @@ public class GPSUtils {
 		throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-		
+	
 	}
 }
