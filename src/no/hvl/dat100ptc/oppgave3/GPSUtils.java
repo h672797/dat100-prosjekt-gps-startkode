@@ -5,6 +5,7 @@ import static java.lang.Math.*;
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
+
 public class GPSUtils {
 
 	public static double findMax(double[] da) {
@@ -45,23 +46,30 @@ public class GPSUtils {
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
-		
+		// returnerer en tabell av desimaltall inneholdende breddegradene for GPS-punktene.
 		//throw new UnsupportedOperationException(TODO.method());
-		double latitude[] = new double[gpspoints.length];
+		double [] latitudes = new double[gpspoints.length];
 		int i;
 		for (i = 0; i < gpspoints.length; i++ ) {
-				latitude[i] = gpspoints[i].getLatitude();
+				latitudes[i] = gpspoints[i].getLatitude();
 		}
-		return latitude;
+		return latitudes;
 		// TODO - SLUTT
 	}
 
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
+		//returnerer en tabell av desimaltall inneholdende lengdegradene for GPS-punktene.
 
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
+		double [] longitudes = new double [gpspoints.length];
+		int i;
+		for (i = 0; i < gpspoints.length; i++) {
+			longitudes[i] = gpspoints[i].getLongitude();
+		}
 		
+		return longitudes;
 		// TODO - SLUTT
 
 	}
