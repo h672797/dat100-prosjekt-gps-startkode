@@ -83,9 +83,19 @@ public class GPSUtils {
 
 		// TODO - START
 
-		throw new UnsupportedOperationException(TODO.method());
+		latitude1 = gpspoint1.getLatitude();
+		longitude1 = gpspoint1.getLongitude();
+		latitude2 = gpspoint2.getLatitude();
+		longitude2 = gpspoint2.getLongitude();
 
-		// TODO - SLUTT
+		double a = pow(sin((toRadians(latitude2) - toRadians(latitude1)) / 2), 2) + (cos(toRadians(latitude1))
+				* cos(toRadians(latitude2)) * pow(sin((toRadians(longitude2) - toRadians(longitude1)) / 2), 2));
+
+		double c = 2 * (atan2(sqrt(a), sqrt(1 - a)));
+		
+		d = R * c;
+		
+		return d;
 
 	}
 
