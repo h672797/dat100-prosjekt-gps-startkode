@@ -26,7 +26,6 @@ public class GPSDataConverter {
 		secs = (hr*60*60) + (min*60) + sec;
 		
 		return secs;
-		//throw new UnsupportedOperationException(TODO.method());
 
 		// OPPGAVE - SLUTT
 		
