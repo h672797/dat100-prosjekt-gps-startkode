@@ -134,6 +134,8 @@ public class GPSUtils {
 	public static String formatDouble(double d) {
 
 		String str;
+		
+		
 
 		// TODO - START
 		str = String.format("%10.2f", d);
