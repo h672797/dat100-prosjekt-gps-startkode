@@ -71,19 +71,17 @@ public class GPSComputer {
 		//throw new UnsupportedOperationException(TODO.method());
 
 		
-
-
 	// beregn gjennomsnitshastighets mellom hver av gps punktene
 
 	public double[] speeds() {
 
 		// TODO - START // OPPGAVE - START
 			 
-		double[] gh = new double [gpspoints.length-1]; 
+		double[] gh = new double [gpspoints.length-1]; //står i opg at nye tabbellen skal være n(antall datapunker)-1
 		
 		
-		for(int i=0; i < gpspoints.length-1; i++) { 
-			gh[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
+		for(int i=0; i < gpspoints.length-1; i++) { //en for løkke slik at den fortsetter handlingen til tabbellen er ferdig
+			gh[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]); //for hver ny verdi skal den hente tallet fra et punkt til punktet etter det
 						
 		}
 		
@@ -143,10 +141,28 @@ public class GPSComputer {
 		// MET: Metabolic equivalent of task angir (kcal x kg-1 x h-1)
 		double met = 0;
 		double speedmph = speed * MS;
+		double hours = secs/3600;
 
 		// TODO - START
 
-		throw new UnsupportedOperationException(TODO.method());
+		if(speedmph < 10) {
+			met = 4.0;
+		} else if(speedmph >= 10 && speedmph <= 12) {
+			met = 6.0;
+		} else if(speedmph >= 12 && speedmph <= 14) {
+			met = 8.0;
+		} else if(speedmph >= 14 && speedmph <= 16) {
+			met = 10.0;
+		} else if(speedmph >= 16 && speedmph <= 20) {
+			met = 12.0;
+		} else if(speedmph > 20) {
+			met = 16.0;
+		}
+		
+		kcal = met * weight * hours;
+		
+		return kcal;
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
 
@@ -157,7 +173,7 @@ public class GPSComputer {
 		double totalkcal = 0;
 
 		// TODO - START
-
+			
 		throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
@@ -171,11 +187,17 @@ public class GPSComputer {
 		System.out.println("==============================================");
 
 		// TODO - START
+		System.out.println("Total Time: " + totalTime());
+		System.out.println("Total Distance: " + totalDistance());
+		System.out.println("Total Elevation: " + totalElevation());
+		System.out.println("Max Speed: " + maxSpeed());
+		System.out.println("Avergave speed: " + averageSpeed());
+		System.out.println("Energy: " + totalKcal(WEIGHT));
 
-		throw new UnsupportedOperationException(TODO.method());
+		
 
 		// TODO - SLUTT
-
+		
 	}
 
 }
