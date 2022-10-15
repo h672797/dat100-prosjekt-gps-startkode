@@ -61,6 +61,7 @@ public class GPSComputer {
 	// beregn total tiden for hele turen (i sekunder)
 	//siste -første
 	public int totalTime() {
+
 		int time = 0;
 		time = gpspoints[gpspoints.length -1].getTime() - gpspoints[0].getTime();
 		return time;
@@ -68,6 +69,7 @@ public class GPSComputer {
 		}
 		
 		//throw new UnsupportedOperationException(TODO.method());
+
 		
 
 
@@ -76,12 +78,26 @@ public class GPSComputer {
 	public double[] speeds() {
 
 		// TODO - START // OPPGAVE - START
+			 
+		double[] gh = new double [gpspoints.length-1]; 
+		
+		
+		for(int i=0; i < gpspoints.length-1; i++) { 
+			gh[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
+						
+		}
+		
+		return gh;
+		
+		
 
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
 
 	}
+
+	
 
 	public double maxSpeed() {
 
