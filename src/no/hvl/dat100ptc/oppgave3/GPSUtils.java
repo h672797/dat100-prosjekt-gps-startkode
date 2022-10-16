@@ -141,6 +141,7 @@ public class GPSUtils {
 		str = String.format("%10.2f", d);
 
 		// TODO - SLUTT
+		System.out.println(str);
 		return str;
 	}
 }
