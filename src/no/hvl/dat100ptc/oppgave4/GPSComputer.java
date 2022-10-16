@@ -61,7 +61,7 @@ public class GPSComputer {
 	}
 
 	// beregn total tiden for hele turen (i sekunder)
-	//siste -første
+	// last -first
 	public int totalTime() {
 
 		int time = 0;
@@ -79,10 +79,10 @@ public class GPSComputer {
 
 		// TODO - START // OPPGAVE - START
 			 
-		double[] gh = new double [gpspoints.length-1]; //står i opg at nye tabbellen skal være n(antall datapunker)-1
+		double[] gh = new double [gpspoints.length-1]; //står i opg at nye tabellen skal være n(antall datapunker)-1
 		
 		
-		for(int i=0; i < gpspoints.length-1; i++) { //en for løkke slik at den fortsetter handlingen til tabbellen er ferdig
+		for(int i=0; i < gpspoints.length-1; i++) { //en for løkke slik at den fortsetter handlingen til tabellen er ferdig
 			gh[i] = GPSUtils.speed(gpspoints[i],gpspoints[i+1]); //for hver ny verdi skal den hente tallet fra et punkt til punktet etter det
 						
 		}
@@ -98,26 +98,40 @@ public class GPSComputer {
 	}
 
 	
-
+	// returnerer den største hastigheten vi har beveget oss med mellom to punkter på ruten.
+	// speed 
 	public double maxSpeed() {
 
 		double maxspeed = 0;
 
 		// TODO - START
+		for ( int i = 0; i < gpspoints.length; i++) {
+			double 
+		}
+		
 
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
 
 	}
-
+	// returnerer gjennomsnittshastigheten vi har beveget oss med total sett for hele ruten
 	public double averageSpeed() {
 
 		double average = 0;
+		double conv = 3.6; //conversion
 
 		// TODO - START
+		// m/s --> km/t
+		average = totalDistance()/totalTime();
+		average = average * conv;
+		
+		return average; //km/t
+		
+		
+		
 
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
 
