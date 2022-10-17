@@ -52,12 +52,15 @@ public class ShowRoute extends EasyGraphics {
 
 	// antall y-pixels per breddegrad
 	public double ystep() {
-	
-		double ystep;
-		
+			
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		
+		double ystep = MAPYSIZE / (Math.abs(maxlat-minlat));
+		
+		return ystep;
 
 		// TODO - SLUTT
 		
@@ -66,8 +69,57 @@ public class ShowRoute extends EasyGraphics {
 	public void showRouteMap(int ybase) {
 
 		// TODO - START
+		int teller = 0;
 		
-		throw new UnsupportedOperationException(TODO.method());
+		double[] speeds = gpscomputer.speeds();
+		
+		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		double[] x = new double[gpspoints.length];
+		double[] y = new double[gpspoints.length];
+		double xStep = xstep();
+		double yStep = ystep();
+		
+		for(int i = 0; i< x.length; i++) {
+			x[i] = xStep * (gpspoints[i].getLongitude() - minlon);
+			y[i] = yStep * (gpspoints[i].getLatitude() - minlat);
+	
+		}
+		
+		setColor(0, 0, 255);
+		int a = drawCircle((int) (x[0] + 0.5), ybase - (int) (y[0] + 0.5),3);
+
+		
+		for(int i = 0; i<gpspoints.length; i++) {
+			int tempY = (int) (y[i] + 0.5);
+			int tempX = (int) (x[i] + 0.5);
+			
+			if (x[i] == x[gpspoints.length -1]) {
+				setColor(0, 0, 255);
+				fillCircle(MARGIN + tempX, ybase - tempY, 5);
+			} else {
+				setColor(0, 255, 0);
+				fillCircle(MARGIN + tempX, ybase - tempY, 2);
+			}
+			
+			moveCircle(a, MARGIN + tempX, ybase - tempY);
+			
+			if (i > 0) {
+				int tempYLast = (int) (y[i -1] + 0.5);
+				int tempXLast = (int) (x[i -1] + 0.5);
+				
+				if(gpspoints[i].getElevation() < gpspoints[i -1].getElevation()) {
+					setColor(255, 0, 0);
+					drawLine(MARGIN + tempX, ybase - tempY, MARGIN + tempXLast, ybase - tempYLast);
+				} else {
+					setColor(0,255,0);
+					drawLine(MARGIN + tempX, ybase - tempY, MARGIN + tempXLast, ybase - tempYLast);
+				}
+				
+				int speedGraph = (int) (speeds[i-1]);
+				drawLine(650 + teller, 75, 650 + teller, 75 - speedGraph);
+			}
+		}
 		
 		// TODO - SLUTT
 	}
@@ -78,12 +130,26 @@ public class ShowRoute extends EasyGraphics {
 
 		setColor(0,0,0);
 		setFont("Courier",12);
-		
+		int pos = 0;
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		String[] stats = new String[5];
 		
-		// TODO - SLUTT;
+		stats[0] = "Total time        :" + GPSUtils.formatTime(gpscomputer.totalTime());
+		stats[1] = "Total distance :" + GPSUtils.formatDouble(gpscomputer.totalDistance()) + " km";
+		stats[2] = "Total elevation :" + GPSUtils.formatDouble(gpscomputer.totalElevation()) + " m";
+		stats[3] = "Max speed       :" + GPSUtils.formatDouble(gpscomputer.maxSpeed()) + " km/t";
+		stats[4] = "Average speed:" + GPSUtils.formatDouble(gpscomputer.averageSpeed()) + " km/t";
+
+		
+		for(int i = 0; i < stats.length; i++) {
+			pos = pos + TEXTDISTANCE;
+			drawString(stats[i], MARGIN, pos);
+		}
+		
+		
+		
+		
 	}
 
 }
