@@ -99,16 +99,19 @@ public class GPSComputer {
 
 	
 	// returnerer den største hastigheten vi har beveget oss med mellom to punkter på ruten.
-	// speed 
 	public double maxSpeed() {
 
 		double maxspeed = 0;
 
 		// TODO - START
-		for ( int i = 0; i < gpspoints.length; i++) {
-			double 
-		}
-		
+		int i = 0;
+		for ( i = 0; i < gpspoints.length-1; i++) {
+			double f1 = GPSUtils.speed(gpspoints[i], gpspoints [i+1]);
+			if (f1 > maxspeed ) {
+				maxspeed = f1;
+			}
+		} 
+		return maxspeed;
 
 		//throw new UnsupportedOperationException(TODO.method());
 
@@ -194,7 +197,8 @@ public class GPSComputer {
 		double[] kcalTab = new double[gpspoints.length-1];
 		
 		
-		// går igjennom alle punktene og legger de sammen, getTime= tiden fra punktet før i - tid fra punkt i for å finne tiden det tok mellom punktene. speed har allerede regnet ut hastigheten mellom de to punktene
+		// går igjennom alle punktene og legger de sammen, 
+		// getTime= tiden fra punktet før i - tid fra punkt i for å finne tiden det tok mellom punktene. speed har allerede regnet ut hastigheten mellom de to punktene
 		for(int i = 0; i < gpspoints.length-1; i++) {
 			kcalTab[i] = kcal(weight, gpspoints[i+1].getTime() - gpspoints[i].getTime(), GPSUtils.speed(gpspoints[i], gpspoints[i+1]));
 			totalkcal += kcalTab[i];
