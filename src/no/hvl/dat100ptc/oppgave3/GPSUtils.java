@@ -2,6 +2,8 @@ package no.hvl.dat100ptc.oppgave3;
 
 import static java.lang.Math.*;
 
+import java.util.Locale;
+
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
@@ -135,11 +137,10 @@ public class GPSUtils {
 
 		String str;
 		
-		
-
 		// TODO - START
+		Locale.setDefault(Locale.US);		
 		str = String.format("%10.2f", d);
-
+		
 		// TODO - SLUTT
 		System.out.println(str);
 		return str;
