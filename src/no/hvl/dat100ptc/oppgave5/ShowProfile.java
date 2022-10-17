@@ -45,7 +45,7 @@ public class ShowProfile extends EasyGraphics {
 
 		// ybase indicates the position on the y-axis where the columns should start
 	
-		int x = MARGIN,y = ybase;
+		int x = MARGIN, y = ybase;
 		
 		// TODO - START
 		int j = 0;
@@ -56,7 +56,7 @@ public class ShowProfile extends EasyGraphics {
 			if (høgde <= 0) {
 				høgde = ybase;
 			}
-			drawLine(x+j, ybase, x+j, ybase-høgde);
+			drawLine(x+j, y, x+j, y-høgde);
 		}
 		//throw new UnsupportedOperationException(TODO.method());
 		// drawLine(xStart,yStart, xStop, yStop);
