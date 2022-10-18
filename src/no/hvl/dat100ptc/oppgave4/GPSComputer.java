@@ -160,7 +160,7 @@ public class GPSComputer {
 		// MET: Metabolic equivalent of task angir (kcal x kg-1 x h-1)
 		double met = 0;
 		double speedmph = speed * MS;
-		double hours = secs/3600;
+		double hours = ((double) secs/3600);
 
 		// TODO - START
 
